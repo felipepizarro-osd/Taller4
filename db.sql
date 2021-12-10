@@ -1,8 +1,8 @@
-create table Usuario_no_registrado (
-    rut text primary key not null
-);
-create table Usuario_registrado (
-    rut text primary key not null
+
+create table Usuario (
+    
+    rut text primary key not null,
+    RegistradoS_N boolean,
     nombre text, 
     apellido text,
     contraseña varchar(20),
@@ -46,13 +46,14 @@ create table producto (
 create table realiza (
     rut text,
     id_compra int ,
-    foreign key (rut) references Usuario_no_registrado(rut),
-    foreign key (rut) references Usuario_registrado(rut),
+    fecha_compra datetime,
+    foreign key (rut) references Usuario(rut),
     foreign key (id_compra) references compra(id_compra)
 );
 create table detalle (
     id_producto int,
     id_compra int, 
+    cantidad int,
     foreign key (id_producto) references producto(id_producto),
     foreign key (id_compra) references compra(id_compra)
 );
